@@ -1,20 +1,27 @@
 import assemblyai as aai
+"b82693154c7a4a7ca95675dd807a3fe7"
 
-aai.settings.api_key = "b82693154c7a4a7ca95675dd807a3fe7"
+class Audio:
 
-audio_file = "recordings/AndrewNG.mp3"
+    def __init__(self,apikey,audiofile):
 
-config = aai.TranscriptionConfig(speech_model=aai.SpeechModel.nano, language_code="en_us")
+        aai.settings.api_key = apikey
 
-transcriber = aai.Transcriber(config=config)
+        self.audio_file = audiofile
 
-transcript = transcriber.transcribe(audio_file)
+        self.config = aai.TranscriptionConfig(speech_model=aai.SpeechModel.nano, language_code="en_us")
 
-if transcript.status == aai.TranscriptStatus.error:
-    print(transcript.error)
-else:
-    with open("transcriptions/transcript.txt", "w") as file:
-        print(transcript.text, file = file)
+        self.transcriber = aai.Transcriber(config=self.config)
+
+    def transcribe(self):
+        transcript = self.transcriber.transcribe(self.audio_file)
+
+        if transcript.status == aai.TranscriptStatus.error:
+            print(transcript.error)
+        else:
+            return transcript.text
+            #with open("transcript.txt", "w") as file:
+            #    print(transcript.text, file = file)
 
 
 
