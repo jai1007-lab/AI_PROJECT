@@ -5,14 +5,14 @@ class LLM:
      
     def __init__(self,apikey,text):
         self.client = Groq(
-        api_key=  apikey #"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" #os.environ.get("GROQ_API_KEY"),
+        api_key = apikey #"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" #os.environ.get("GROQ_API_KEY"),
         )
         self.transcription_text = text
 
         self.prompt()
           
     def prompt(self):
-         with open('LLM/prompts/summary_prompt.txt', 'r') as file:
+         with open('Summary/prompts/summary_prompt.txt', 'r') as file:
             self.prompt_text = file.read()
 
     #def transcript(self):
@@ -20,7 +20,6 @@ class LLM:
         #    self.transcription_text = file.read()
 
     def generate_summary(self):
-
 
         chat_completion = self.client.chat.completions.create(
             model="llama3-8b-8192",

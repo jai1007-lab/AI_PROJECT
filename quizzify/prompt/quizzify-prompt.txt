@@ -1,0 +1,5 @@
+Based on the provided text, create {num_questions} multiple-choice questions. 
+Each question should include 4 answer choices, indicate the correct answer, 
+and provide a brief explanation for why the answer is correct.
+
+Text: {text}

@@ -15,5 +15,6 @@ Omit Minor Details: Avoid including unnecessary details, tangents, or off-topic 
 
 Language and Tone: Use clear, formal language suitable for academic contexts. Ensure the tone is professional and the summary is accurate, avoiding personal opinions or interpretations.
 
+Generate Keywords: Geberate major and important Keywords
 Summary:
 [Summary of the lecture here, structured as described above]"
