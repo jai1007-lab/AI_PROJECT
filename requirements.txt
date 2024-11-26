@@ -17,8 +17,8 @@ youtube-transcript-api
 pytube
 python-dotenv
 
+streamlit
 assemblyai
 groq
-youtube_transcript_api
 PyPDF2
 moviepy
