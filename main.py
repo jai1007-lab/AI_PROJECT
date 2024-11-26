@@ -3,11 +3,11 @@ from Audio.transcribe import Audio
 from Summary.summary import LLM
 from Converter.Mp4_converter import VideoConverter
 from Converter.YT_converter import youtube_converter
-
+from Converter.pdf_reader import PDFReader
 def main():
-    st.title("Audio Transcription and Summarization")
+    st.title("Summarization and Quiz Generator")
 
-    option = st.radio("Choose file type:", ("MP3", "MP4", "YouTube URL"))
+    option = st.radio("Choose file type:", ("MP3", "MP4", "YouTube URL", "PDF", "Text"))
 
     transcript = None  # Initialize transcript variable
 
@@ -44,8 +44,24 @@ def main():
             with st.spinner("Extracting video ID..."):
                 yt_converter = youtube_converter(youtube_url)
                 transcript = yt_converter.display_transcript()
-            
+    
+    elif option == "PDF":
+        st.header("Upload your PDF File")
+        uploaded_file = st.file_uploader("Choose a PDF file", type=["pdf"])
 
+        if uploaded_file is not None:
+            # Read PDF content
+            with st.spinner("Reading PDF..."):
+                pdf_reader = PDFReader(uploaded_file)
+                transcript = pdf_reader.read_pdf_content(uploaded_file)
+    elif option == "Text":
+        st.header("Enter your text")
+        text = st.text_area("Text", "")
+        if text:
+            # Run audio transcription function
+            with st.spinner("Processing text..."):
+                transcript = text
+                
     # Display the transcript and summary if available
     if transcript:
         with st.expander("📜 Full Transcript"):

@@ -42,6 +42,6 @@ class LLM:
         return chat_completion.choices[0].message.content
 
         # Implement the logic where each time the user asks for a summary, the code will generate a new summary and save it in a new file, summary[i].txt
-
+        """
         with open("generated_summaries/summary1.txt", "w") as file:
-                print(chat_completion.choices[0].message.content, file = file)
+                print(chat_completion.choices[0].message.content, file = file)"""

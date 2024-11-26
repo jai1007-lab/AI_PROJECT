@@ -16,3 +16,9 @@ fpdf
 youtube-transcript-api
 pytube
 python-dotenv
+
+assemblyai
+groq
+youtube_transcript_api
+PyPDF2
+moviepy
