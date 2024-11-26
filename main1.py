@@ -48,10 +48,8 @@ def display_quiz(quiz_data):
     if "answer_feedback" not in st.session_state:
         st.session_state["answer_feedback"] = {}
 
-    submitted = st.button("Submit", key=f"submit_q{question_index}")
-
-    # Show feedback and explanation after Submit is clicked
-    if submitted:
+    # Display feedback and explanation only if Submit is clicked
+    if st.button("Submit", key=f"submit_q{question_index}"):
         correct_answer = next(
             (opt["value"] for opt in question_data["choices"] if opt["key"] == correct_key), None
         )
@@ -79,7 +77,7 @@ def display_quiz(quiz_data):
             if st.button("Previous", key=f"prev_{question_index}"):
                 st.session_state.current_question_index -= 1
                 st.session_state["answer_feedback"] = {}  # Clear feedback for navigation
-                st.rerun()  # Force app to rerun
+                st.rerun()  # Force app to rerun immediately
 
     # Disable Next button on the last question
     with col2:
@@ -90,7 +88,7 @@ def display_quiz(quiz_data):
             if st.button("Next", key=f"next_{question_index}"):
                 st.session_state.current_question_index += 1
                 st.session_state["answer_feedback"] = {}  # Clear feedback for navigation
-                st.rerun()  # Force app to rerun
+                st.rerun()  # Force app to rerun immediately
 
 
 def main():
@@ -155,7 +153,9 @@ def main():
                 with st.spinner("Generating quiz..."):
                     quiz_llm = QuizLLM("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", st.session_state.transcript, num_questions)
                     raw_quiz = quiz_llm.generate_quiz()
+                    st.write("Raw Output from LLM:",raw_quiz)
                     quiz_data = clean_and_parse_quiz(raw_quiz)
+                    st.write("Cleaned response", quiz_data)
                     if quiz_data:
                         st.session_state.quiz_data = quiz_data
                     else:
